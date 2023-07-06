@@ -1,3 +1,5 @@
+import 'package:cspace_flutter_animation/pages/on-boarding_page.dart';
+import 'package:cspace_flutter_animation/pages/splash-screen_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      title: 'Flutter Demo',
-        home: Scaffold(
-          body: Center(
-            child: Image.asset('assets/images/logo_dark.png'),
-          ),
-        )
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/onboarding': (context) => OnBoarding(),
+      },
     );
   }
 }

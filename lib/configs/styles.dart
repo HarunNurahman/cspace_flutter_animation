@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Basic Color
 Color blackColor = const Color(0xFF000000);
@@ -18,4 +19,7 @@ FontWeight medium = FontWeight.w500;
 FontWeight semibold = FontWeight.w600;
 FontWeight bold = FontWeight.w700;
 
-// Text
+// Text Style
+TextStyle blackTextStyle = GoogleFonts.nunito(color: blackColor);
+TextStyle whiteTextStyle = GoogleFonts.nunito(color: whiteColor);
+TextStyle greyTextStyle = GoogleFonts.nunito(color: greyColor);
