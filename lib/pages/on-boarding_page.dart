@@ -63,7 +63,7 @@ class _OnBoardingState extends State<OnBoarding> {
               children: [
                 TextButton(
                   onPressed: () {
-                    carouselController.jumpToPage(2);
+                    carouselController.animateToPage(2);
                   },
                   child: currentIndex == 2
                       ? const Text('')
@@ -106,6 +106,9 @@ class _OnBoardingState extends State<OnBoarding> {
                 ),
                 TextButton(
                   onPressed: () {
+                    if (currentIndex == 2) {
+                      Navigator.pushNamed(context, '/login');
+                    }
                     carouselController.nextPage();
                   },
                   child: currentIndex == 2
