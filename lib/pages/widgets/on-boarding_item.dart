@@ -19,7 +19,10 @@ class OnBoardingItem extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(top: 100, bottom: 130),
-          child: Image.asset(imgUrl),
+          child: Image.asset(
+            imgUrl,
+            width: MediaQuery.of(context).size.width * 0.8,
+          ),
         ),
         Text(
           title,

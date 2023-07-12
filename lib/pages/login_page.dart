@@ -219,6 +219,7 @@ class _LoginState extends State<Login> {
           setState(() {
             isLoading = true;
           });
+
           Future.delayed(const Duration(seconds: 3), () {
             setState(() {
               isLoading = false;
@@ -232,6 +233,9 @@ class _LoginState extends State<Login> {
                 toastDuration: const Duration(seconds: 3),
                 gravity: ToastGravity.BOTTOM,
               );
+            } else {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/home', (route) => false);
             }
           });
         },

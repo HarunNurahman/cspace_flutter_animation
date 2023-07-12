@@ -1,3 +1,4 @@
+import 'package:cspace_flutter_animation/pages/home_page.dart';
 import 'package:cspace_flutter_animation/pages/login_page.dart';
 import 'package:cspace_flutter_animation/pages/on-boarding_page.dart';
 import 'package:cspace_flutter_animation/pages/splash-screen_page.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => SplashScreen(),
         '/onboarding': (context) => OnBoarding(),
         '/login': (context) => Login(),
+        '/home': (context) => Home(),
       },
     );
   }
