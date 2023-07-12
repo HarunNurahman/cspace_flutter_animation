@@ -31,59 +31,7 @@ class _HomeState extends State<Home> {
               // CATEGORY SECTION
               categorySection(),
               // POPULAR SECTION
-              Container(
-                margin: const EdgeInsets.only(top: 24),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(40),
-                  ),
-                  color: whiteColor,
-                ),
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Popular',
-                            style: blackTextStyle.copyWith(
-                              fontSize: 24,
-                              fontWeight: semibold,
-                            ),
-                          ),
-                          Text('Show All', style: blackTextStyle),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      const SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            HomePopularItem(
-                              imgUrl: 'assets/images/img_product-popular-1.png',
-                              title: 'Poan Chair',
-                              price: 34,
-                            ),
-                            HomePopularItem(
-                              imgUrl: 'assets/images/img_product-popular-2.png',
-                              title: 'Poan Chair',
-                              price: 34,
-                            ),
-                            HomePopularItem(
-                              imgUrl: 'assets/images/img_product-popular-3.png',
-                              title: 'Poan Chair',
-                              price: 34,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 38),
-                    ],
-                  ),
-                ),
-              ),
+              popularSection(),
             ],
           )
         ],
@@ -153,29 +101,32 @@ class _HomeState extends State<Home> {
   }
 
   Widget searchBar() {
-    return Container(
-      margin: const EdgeInsets.only(top: 30, left: 24, right: 24),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: whiteColor,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            'Search Furniture',
-            style: greyTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: semibold,
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, '/search'),
+      child: Container(
+        margin: const EdgeInsets.only(top: 30, left: 24, right: 24),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Search Furniture',
+              style: greyTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semibold,
+              ),
             ),
-          ),
-          Image.asset(
-            'assets/icons/ic_search_dark.png',
-            color: greyColor,
-            width: 24,
-          )
-        ],
+            Image.asset(
+              'assets/icons/ic_search_dark.png',
+              color: greyColor,
+              width: 24,
+            )
+          ],
+        ),
       ),
     );
   }
@@ -271,6 +222,62 @@ class _HomeState extends State<Home> {
           ),
         )
       ],
+    );
+  }
+
+  Widget popularSection() {
+    return Container(
+      margin: const EdgeInsets.only(top: 24),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(40),
+        ),
+        color: whiteColor,
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Popular',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 24,
+                    fontWeight: semibold,
+                  ),
+                ),
+                Text('Show All', style: blackTextStyle),
+              ],
+            ),
+            const SizedBox(height: 16),
+            const SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  HomePopularItem(
+                    imgUrl: 'assets/images/img_product-popular-1.png',
+                    title: 'Poan Chair',
+                    price: 34,
+                  ),
+                  HomePopularItem(
+                    imgUrl: 'assets/images/img_product-popular-2.png',
+                    title: 'Poan Chair',
+                    price: 34,
+                  ),
+                  HomePopularItem(
+                    imgUrl: 'assets/images/img_product-popular-3.png',
+                    title: 'Poan Chair',
+                    price: 34,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 38),
+          ],
+        ),
+      ),
     );
   }
 }

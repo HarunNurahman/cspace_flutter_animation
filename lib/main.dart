@@ -1,6 +1,8 @@
 import 'package:cspace_flutter_animation/pages/home_page.dart';
 import 'package:cspace_flutter_animation/pages/login_page.dart';
 import 'package:cspace_flutter_animation/pages/on-boarding_page.dart';
+import 'package:cspace_flutter_animation/pages/search-result_page.dart';
+import 'package:cspace_flutter_animation/pages/search_page.dart';
 import 'package:cspace_flutter_animation/pages/splash-screen_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         '/onboarding': (context) => OnBoarding(),
         '/login': (context) => Login(),
         '/home': (context) => Home(),
+        '/search': (context) => Search(),
+        '/search-result': (context) => SearchResult(),
       },
     );
   }
