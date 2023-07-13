@@ -1,17 +1,24 @@
 import 'package:cspace_flutter_animation/configs/styles.dart';
 import 'package:flutter/material.dart';
 
-class RecommendationItem extends StatelessWidget {
+class ProductListItem extends StatefulWidget {
   final String imgUrl;
   final String title;
   final int price;
 
-  const RecommendationItem({
+  const ProductListItem({
     super.key,
     required this.imgUrl,
     required this.title,
     required this.price,
   });
+
+  @override
+  State<ProductListItem> createState() => _ProductListItemState();
+}
+
+class _ProductListItemState extends State<ProductListItem> {
+  bool isWishlist = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +32,13 @@ class RecommendationItem extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(imgUrl, width: 60),
+          Image.asset(widget.imgUrl, width: 60),
           const SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                title,
+                widget.title,
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: semibold,
@@ -39,13 +46,27 @@ class RecommendationItem extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                '\$$price',
+                '\$${widget.price}',
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: semibold,
                 ),
               )
             ],
+          ),
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isWishlist = !isWishlist;
+              });
+            },
+            child: Image.asset(
+              isWishlist
+                  ? 'assets/icons/btn_wishlist_on.png'
+                  : 'assets/icons/btn_wishlist_off.png',
+              width: 44,
+            ),
           )
         ],
       ),

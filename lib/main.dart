@@ -1,3 +1,4 @@
+import 'package:cspace_flutter_animation/pages/product-category_page.dart';
 import 'package:cspace_flutter_animation/pages/home_page.dart';
 import 'package:cspace_flutter_animation/pages/login_page.dart';
 import 'package:cspace_flutter_animation/pages/on-boarding_page.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => Home(),
         '/search': (context) => Search(),
         '/search-result': (context) => SearchResult(),
+        '/category': (context) => ProductCategory(),
       },
     );
   }
