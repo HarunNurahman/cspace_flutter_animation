@@ -1,17 +1,20 @@
-import 'package:cspace_flutter_animation/configs/styles.dart';
 import 'package:cspace_flutter_animation/pages/widgets/product-grid_dart.dart';
 import 'package:cspace_flutter_animation/pages/widgets/product-list_item.dart';
-import 'package:cspace_flutter_animation/pages/widgets/skeleton_item.dart';
 import 'package:flutter/material.dart';
 
-class SearchResult extends StatefulWidget {
-  const SearchResult({super.key});
+import '../configs/styles.dart';
+import 'widgets/skeleton_item.dart';
+
+class Wishlist extends StatefulWidget {
+  const Wishlist({super.key});
 
   @override
-  State<SearchResult> createState() => _SearchResultState();
+  State<Wishlist> createState() => _WishlistState();
 }
 
-class _SearchResultState extends State<SearchResult> {
+class _WishlistState extends State<Wishlist> {
+  int? currentIndex = 0;
+
   bool isLoading = true;
   bool isShowGrid = true;
 
@@ -30,100 +33,54 @@ class _SearchResultState extends State<SearchResult> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
+    return Scaffold(
         appBar: appBar(),
-        body: TabBarView(
+        bottomNavigationBar: bottomNavBar(),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           children: [
-            buildBody(),
-            buildBody(),
-            buildBody(),
-            buildBody(),
+            const SizedBox(height: 30),
+            isLoading
+                ? buildLoading()
+                : isShowGrid
+                    ? buildGrid()
+                    : buildList(),
           ],
-        ),
-      ),
-    );
+        ));
   }
 
   PreferredSize appBar() {
     return PreferredSize(
-      preferredSize: const Size(double.infinity, 120),
+      preferredSize: const Size(
+        double.infinity,
+        60,
+      ),
       child: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: whiteColor,
         elevation: 0,
+        backgroundColor: whiteColor,
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(Icons.chevron_left, color: blackColor)),
-            const SizedBox(width: 18),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: whiteGrey,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        textInputAction: TextInputAction.go,
-                        onFieldSubmitted: (value) {
-                          Navigator.pushNamed(context, '/search-result');
-                        },
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Search furniture',
-                          hintStyle: greyTextStyle.copyWith(
-                            fontSize: 16,
-                            fontWeight: semibold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Icon(Icons.close, color: greyColor)
-                  ],
-                ),
-              ),
+              onTap: () => Navigator.pop(context),
+              child: Icon(Icons.chevron_left, color: blackColor),
             ),
             const SizedBox(width: 18),
-            Image.asset('assets/icons/ic_filter_dark.png', width: 24),
-          ],
-        ),
-        bottom: TabBar(
-          indicatorColor: blackColor,
-          labelColor: blackColor,
-          labelStyle: blackTextStyle,
-          isScrollable: true,
-          tabs: [
-            Tab(text: 'Chair'),
-            Tab(text: 'Table'),
-            Tab(text: 'Accessories'),
-            Tab(text: 'Living Room'),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildBody() {
-    return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      children: [
-        const SizedBox(height: 30),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             Text(
-              'Result for: Poang',
+              'Wishlist',
               style: blackTextStyle.copyWith(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: semibold,
               ),
             ),
+            const Spacer(),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/search');
+              },
+              child: Image.asset('assets/icons/ic_search_dark.png', width: 24),
+            ),
+            const SizedBox(width: 18),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -136,16 +93,53 @@ class _SearchResultState extends State<SearchResult> {
                     : 'assets/icons/ic_grid_dark.png',
                 width: 24,
               ),
-            ),
+            )
           ],
         ),
-        const SizedBox(height: 20),
-        isLoading
-            ? buildLoading()
-            : isShowGrid
-                ? buildGrid()
-                : buildList(),
-      ],
+      ),
+    );
+  }
+
+  Widget bottomNavBar() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BottomNavigationBar(
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        backgroundColor: whiteColor,
+        onTap: (value) {
+          if (value == 0) {
+            Navigator.pushNamed(context, '/home');
+          } else if (value == 2) {
+            Navigator.pushNamed(context, '/profile');
+          }
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/ic_home_dark.png',
+              color: blackColor,
+              width: 24,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+              icon: Image.asset(
+                'assets/icons/ic_wishlist_dark.png',
+                color: blueColor,
+                width: 24,
+              ),
+              label: 'Wishlist'),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/icons/ic_profile_dark.png',
+              color: blackColor,
+              width: 24,
+            ),
+            label: 'Profile',
+          )
+        ],
+      ),
     );
   }
 

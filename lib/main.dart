@@ -2,9 +2,11 @@ import 'package:cspace_flutter_animation/pages/product-category_page.dart';
 import 'package:cspace_flutter_animation/pages/home_page.dart';
 import 'package:cspace_flutter_animation/pages/login_page.dart';
 import 'package:cspace_flutter_animation/pages/on-boarding_page.dart';
+import 'package:cspace_flutter_animation/pages/profile_page.dart';
 import 'package:cspace_flutter_animation/pages/search-result_page.dart';
 import 'package:cspace_flutter_animation/pages/search_page.dart';
 import 'package:cspace_flutter_animation/pages/splash-screen_page.dart';
+import 'package:cspace_flutter_animation/pages/wishlist_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
         '/search': (context) => Search(),
         '/search-result': (context) => SearchResult(),
         '/category': (context) => ProductCategory(),
+        '/wishlist': (context) => Wishlist(),
+        '/profile': (context) => Profile(),
       },
     );
   }

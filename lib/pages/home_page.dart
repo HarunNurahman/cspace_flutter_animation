@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int? currentIndex = 0;
+  int? currentTab = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +47,18 @@ class _HomeState extends State<Home> {
         showUnselectedLabels: false,
         showSelectedLabels: false,
         backgroundColor: whiteColor,
+        onTap: (value) {
+          if (value == 1) {
+            Navigator.pushNamed(context, '/wishlist');
+          } else if (value == 2) {
+            Navigator.pushNamed(context, '/profile');
+          }
+        },
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/icons/ic_home_dark.png',
+              color: currentTab == 0 ? blueColor : blackColor,
               width: 24,
             ),
             label: 'Home',
@@ -57,12 +66,14 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/icons/ic_wishlist_dark.png',
+                color: currentTab == 1 ? blueColor : blackColor,
                 width: 24,
               ),
               label: 'Wishlist'),
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/icons/ic_profile_dark.png',
+              color: currentTab == 2 ? blueColor : blackColor,
               width: 24,
             ),
             label: 'Profile',
