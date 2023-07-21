@@ -11,10 +11,13 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  bool isLightMode = true;
+  double opacity = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteGrey,
+      backgroundColor: isLightMode ? whiteGrey : darkBg,
       bottomNavigationBar: bottomNavBar(),
       body: Stack(
         children: [
@@ -46,21 +49,37 @@ class _ProfileState extends State<Profile> {
                           style: blackTextStyle.copyWith(
                             fontSize: 24,
                             fontWeight: medium,
+                            color: isLightMode ? null : whiteColor,
                           ),
                         )
                       ],
                     ),
-                    Container(
-                      width: 88,
-                      height: 44,
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Image.asset('assets/icons/ic_day-switch.png'),
+                    // THEME SWITCH
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isLightMode = !isLightMode;
+                        });
+                      },
+                      child: Container(
+                        width: 88,
+                        height: 44,
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: isLightMode ? whiteColor : darkNav,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: AnimatedAlign(
+                          duration: const Duration(milliseconds: 100),
+                          alignment: isLightMode
+                              ? Alignment.centerLeft
+                              : Alignment.centerRight,
+                          child: Image.asset(
+                            isLightMode
+                                ? 'assets/icons/ic_day-switch.png'
+                                : 'assets/icons/ic_night-switch.png',
+                          ),
+                        ),
                       ),
                     )
                   ],
@@ -74,38 +93,45 @@ class _ProfileState extends State<Profile> {
                   vertical: 32,
                 ),
                 decoration: BoxDecoration(
-                  color: whiteColor,
+                  color: isLightMode ? whiteColor : darkNav,
                   borderRadius: BorderRadius.circular(36),
                 ),
-                child: const Column(
+                child: Column(
                   children: [
                     ProfileMenuItem(
                       iconUrl: 'assets/icons/ic_profile_dark.png',
                       title: 'My Profile',
+                      theme: isLightMode,
                     ),
                     ProfileMenuItem(
                       iconUrl: 'assets/icons/ic_address_dark.png',
                       title: 'My Address',
+                      theme: isLightMode,
                     ),
                     ProfileMenuItem(
                       iconUrl: 'assets/icons/ic_order_dark.png',
+                      theme: isLightMode,
                       title: 'My Order',
                     ),
                     ProfileMenuItem(
                       iconUrl: 'assets/icons/ic_payment_dark.png',
+                      theme: isLightMode,
                       title: 'Payment Method',
                     ),
                     ProfileMenuItem(
                       iconUrl: 'assets/icons/ic_wishlist_dark.png',
+                      theme: isLightMode,
                       title: 'My Wishlist',
                     ),
                     ProfileMenuItem(
                       iconUrl: 'assets/icons/ic_faq_dark.png',
+                      theme: isLightMode,
                       title: 'Frequently Asked Question',
                     ),
                     ProfileMenuItem(
                       iconUrl: 'assets/icons/ic_customer-care_dark.png',
                       title: 'Customer Care',
+                      theme: isLightMode,
                     ),
                   ],
                 ),
@@ -123,7 +149,7 @@ class _ProfileState extends State<Profile> {
       child: BottomNavigationBar(
         showUnselectedLabels: false,
         showSelectedLabels: false,
-        backgroundColor: whiteColor,
+        backgroundColor: isLightMode ? whiteColor : darkNav,
         onTap: (value) {
           if (value == 0) {
             Navigator.pushNamed(context, '/home');
@@ -135,7 +161,7 @@ class _ProfileState extends State<Profile> {
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/icons/ic_home_dark.png',
-              color: blackColor,
+              color: isLightMode ? blackColor : whiteColor,
               width: 24,
             ),
             label: 'Home',
@@ -143,7 +169,7 @@ class _ProfileState extends State<Profile> {
           BottomNavigationBarItem(
               icon: Image.asset(
                 'assets/icons/ic_wishlist_dark.png',
-                color: blackColor,
+                color: isLightMode ? blackColor : whiteColor,
                 width: 24,
               ),
               label: 'Wishlist'),

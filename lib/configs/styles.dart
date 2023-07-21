@@ -11,6 +11,9 @@ Color whiteColor = const Color(0xFFFFFFFF);
 Color redColor = const Color(0xFFFF314A);
 Color blueColor = const Color(0xFF2972FF);
 Color yellowColor = const Color(0xFFFFBA00);
+Color darkBg = const Color(0xFF1F1D2B);
+Color darkNav = const Color(0xFF252836);
+Color darkGrey = const Color(0xFF353440);
 
 // Font Weight
 FontWeight light = FontWeight.w300;
