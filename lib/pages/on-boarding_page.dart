@@ -30,12 +30,14 @@ class _OnBoardingState extends State<OnBoarding> {
                   subtitle:
                       'Aliqua id fugiat nostrud irure ex duis ea\nquis id quis ad et. Sunt qui esse',
                 ),
+                // SLIDE 2
                 OnBoardingItem(
                   imgUrl: 'assets/images/img_onboarding-2.png',
                   title: 'Fast Delivery',
                   subtitle:
                       'Aliqua id fugiat nostrud irure ex duis ea\nquis id quis ad et. Sunt qui esse',
                 ),
+                // SLIDE 3
                 OnBoardingItem(
                   imgUrl: 'assets/images/img_onboarding-3.png',
                   title: 'Best Price',
@@ -56,11 +58,13 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
           ),
+          // BOTTOM INDICATOR (SKIP/NEXT)
           Container(
             margin: const EdgeInsets.only(left: 40, right: 40, bottom: 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // SKIP BUTTON
                 TextButton(
                   onPressed: () {
                     carouselController.animateToPage(2);
@@ -72,9 +76,10 @@ class _OnBoardingState extends State<OnBoarding> {
                           style: blackTextStyle.copyWith(fontSize: 18),
                         ),
                 ),
-                // Dot Indicator
+                // DOT INDICATOR
                 Row(
                   children: [
+                    // DOT 1
                     Container(
                       width: 10,
                       height: 10,
@@ -84,6 +89,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         color: currentIndex == 0 ? blackColor : lineDark,
                       ),
                     ),
+                    // DOT 2
                     Container(
                       width: 10,
                       height: 10,
@@ -93,6 +99,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         color: currentIndex == 1 ? blackColor : lineDark,
                       ),
                     ),
+                    // DOT 3
                     Container(
                       width: 10,
                       height: 10,
@@ -104,6 +111,7 @@ class _OnBoardingState extends State<OnBoarding> {
                     )
                   ],
                 ),
+                // NEXT/LOGIN BUTTON
                 TextButton(
                   onPressed: () {
                     if (currentIndex == 2) {

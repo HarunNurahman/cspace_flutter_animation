@@ -51,10 +51,7 @@ class _WishlistState extends State<Wishlist> {
 
   PreferredSize appBar() {
     return PreferredSize(
-      preferredSize: const Size(
-        double.infinity,
-        60,
-      ),
+      preferredSize: const Size(double.infinity, 60),
       child: AppBar(
         elevation: 0,
         backgroundColor: whiteColor,

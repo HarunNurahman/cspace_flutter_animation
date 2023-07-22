@@ -93,12 +93,13 @@ class _SearchResultState extends State<SearchResult> {
             Image.asset('assets/icons/ic_filter_dark.png', width: 24),
           ],
         ),
+        // TAB BAR PER CATEGORY
         bottom: TabBar(
           indicatorColor: blackColor,
           labelColor: blackColor,
           labelStyle: blackTextStyle,
           isScrollable: true,
-          tabs: [
+          tabs: const [
             Tab(text: 'Chair'),
             Tab(text: 'Table'),
             Tab(text: 'Accessories'),
@@ -124,6 +125,7 @@ class _SearchResultState extends State<SearchResult> {
                 fontWeight: semibold,
               ),
             ),
+            // CHANGE VIEW ORIENTATION (GRID/LIST) BUTTON
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -163,6 +165,7 @@ class _SearchResultState extends State<SearchResult> {
     );
   }
 
+  // GRID VIEW
   Widget buildGrid() {
     return const Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
@@ -193,6 +196,7 @@ class _SearchResultState extends State<SearchResult> {
     );
   }
 
+  // LIST VIEW
   Widget buildList() {
     return const Column(
       children: [

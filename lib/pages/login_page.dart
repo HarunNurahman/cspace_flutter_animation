@@ -31,6 +31,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: whiteColor,
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -39,11 +40,17 @@ class _LoginState extends State<Login> {
             Expanded(
               child: Column(
                 children: [
+                  // TITLE
                   title(),
+                  // EMAIL TEXT INPUT
                   emailInput(),
+                  // PASSWORD TEXT INPUT
                   passwordInput(),
+                  // REMEMBER CHECKBOX
                   rememberCheckBox(),
+                  // LOGIN BUTTON
                   loginButton(),
+                  // SEPARATOR
                   Center(
                     child: Container(
                       margin: const EdgeInsets.only(top: 24),
@@ -56,10 +63,12 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+                  // ANOTHER SIGN IN METHOD
                   googleLoginButton(),
                 ],
               ),
             ),
+            // REGISTER BUTTON
             registerButton(),
           ],
         ),
