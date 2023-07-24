@@ -13,68 +13,13 @@ class _DetailProductState extends State<DetailProduct> {
   double indicatorMargin = 5;
   int productIndex = 1;
   bool isExpand = false;
+  bool isShowReview = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteGrey,
-      bottomNavigationBar: isExpand
-          ? null
-          : Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: whiteColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: greyColor,
-                    blurRadius: 5,
-                    offset: const Offset(0, 2),
-                  )
-                ],
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      height: 56,
-                      margin: const EdgeInsets.only(right: 16),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: blackAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                        ),
-                        child: Text(
-                          'Buy Now',
-                          style: whiteTextStyle.copyWith(
-                            fontSize: 18,
-                            fontWeight: semibold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 56,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: whiteGrey,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/icons/ic_shopping-cart_dark.png',
-                        width: 24,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+      extendBody: true,
       body: Stack(
         children: [
           Image.asset('assets/images/img_background.png'),
@@ -101,9 +46,9 @@ class _DetailProductState extends State<DetailProduct> {
           ),
           SizedBox.expand(
             child: DraggableScrollableSheet(
-              initialChildSize: 0.35,
-              minChildSize: 0.35,
-              maxChildSize: 1,
+              initialChildSize: 0.4,
+              minChildSize: 0.4,
+              maxChildSize: 0.95,
               builder: (context, scrollController) {
                 return Container(
                   decoration: BoxDecoration(
@@ -115,13 +60,15 @@ class _DetailProductState extends State<DetailProduct> {
                   child: NotificationListener(
                     onNotification: (Notification notification) {
                       if (notification is ScrollEndNotification) {
-                        if (notification.metrics.minScrollExtent == -1.0) {
+                        if (notification.metrics.minScrollExtent == 0.0) {
                           setState(() {
                             isExpand = true;
+                            print('true');
                           });
                         } else {
                           setState(() {
                             isExpand = false;
+                            print('false');
                           });
                         }
                       }
@@ -227,47 +174,7 @@ class _DetailProductState extends State<DetailProduct> {
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              'Bringing new life to an old favourite. We first introduced this chair in the 1950’s. Some 60 years later we brought it back into the range with the same craftsmanship, comfort and appearance. Enjoy!',
-                              textAlign: TextAlign.justify,
-                              style: greyTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: semibold,
-                                height: 2,
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Bringing new life to an old favourite. We first introduced this chair in the 1950’s. Some 60 years later we brought it back into the range with the same craftsmanship, comfort and appearance. Enjoy!',
-                              textAlign: TextAlign.justify,
-                              style: greyTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: semibold,
-                                height: 2,
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Bringing new life to an old favourite. We first introduced this chair in the 1950’s. Some 60 years later we brought it back into the range with the same craftsmanship, comfort and appearance. Enjoy!',
-                              textAlign: TextAlign.justify,
-                              style: greyTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: semibold,
-                                height: 2,
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Bringing new life to an old favourite. We first introduced this chair in the 1950’s. Some 60 years later we brought it back into the range with the same craftsmanship, comfort and appearance. Enjoy!',
-                              textAlign: TextAlign.justify,
-                              style: greyTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: semibold,
-                                height: 2,
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Bringing new life to an old favourite. We first introduced this chair in the 1950’s. Some 60 years later we brought it back into the range with the same craftsmanship, comfort and appearance. Enjoy!',
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at nisl et tellus tempus convallis eget in lectus. Pellentesque id pretium ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed vestibulum ex nec laoreet efficitur. Etiam at justo sit amet tellus posuere facilisis. Integer nec dapibus magna. Vivamus id gravida massa.',
                               textAlign: TextAlign.justify,
                               style: greyTextStyle.copyWith(
                                 fontSize: 14,
@@ -286,6 +193,92 @@ class _DetailProductState extends State<DetailProduct> {
           )
         ],
       ),
+      bottomNavigationBar: isShowReview
+          ? null
+          : isExpand
+              ? Container(
+                  width: double.infinity,
+                  height: 315,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [whiteColor.withOpacity(0.5), whiteColor]),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            isShowReview = true;
+                          });
+                        },
+                        child: Text(
+                          'See More',
+                          style: blackTextStyle.copyWith(
+                            color: blueColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: whiteColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: greyColor,
+                        blurRadius: 5,
+                        offset: const Offset(0, 2),
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          height: 56,
+                          margin: const EdgeInsets.only(right: 16),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: blackAccent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                            ),
+                            child: Text(
+                              'Buy Now',
+                              style: whiteTextStyle.copyWith(
+                                fontSize: 18,
+                                fontWeight: semibold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 56,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: whiteGrey,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/icons/ic_shopping-cart_dark.png',
+                            width: 24,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
     );
   }
 
