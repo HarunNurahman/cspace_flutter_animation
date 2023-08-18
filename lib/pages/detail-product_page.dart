@@ -196,89 +196,39 @@ class _DetailProductState extends State<DetailProduct> {
       bottomNavigationBar: isShowReview
           ? null
           : isExpand
-              ? Container(
-                  width: double.infinity,
-                  height: 315,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [whiteColor.withOpacity(0.5), whiteColor]),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            isShowReview = true;
-                          });
-                        },
-                        child: Text(
-                          'See More',
-                          style: blackTextStyle.copyWith(
-                            color: blueColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              : Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: whiteColor,
-                    boxShadow: [
-                      BoxShadow(
-                        color: greyColor,
-                        blurRadius: 5,
-                        offset: const Offset(0, 2),
-                      )
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          height: 56,
-                          margin: const EdgeInsets.only(right: 16),
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: blackAccent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
-                              ),
-                            ),
-                            child: Text(
-                              'Buy Now',
-                              style: whiteTextStyle.copyWith(
-                                fontSize: 18,
-                                fontWeight: semibold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 56,
-                        height: 56,
-                        decoration: BoxDecoration(
-                          color: whiteGrey,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/icons/ic_shopping-cart_dark.png',
-                            width: 24,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+              ? seeMoreButton()
+              : bottomNavBar(),
+    );
+  }
+
+  Widget seeMoreButton() {
+    return Container(
+      width: double.infinity,
+      height: 315,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [whiteColor.withOpacity(0.5), whiteColor]),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          TextButton(
+            onPressed: () {
+              setState(() {
+                isShowReview = true;
+              });
+            },
+            child: Text(
+              'See More',
+              style: blackTextStyle.copyWith(
+                color: blueColor,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
