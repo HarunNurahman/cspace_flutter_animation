@@ -1,4 +1,5 @@
 import 'package:cspace_flutter_animation/configs/styles.dart';
+import 'package:cspace_flutter_animation/pages/widgets/review_item.dart';
 import 'package:flutter/material.dart';
 
 class DetailProduct extends StatefulWidget {
@@ -60,15 +61,14 @@ class _DetailProductState extends State<DetailProduct> {
                   child: NotificationListener(
                     onNotification: (Notification notification) {
                       if (notification is ScrollEndNotification) {
-                        if (notification.metrics.minScrollExtent == 0.0) {
+                        if (notification.metrics.minScrollExtent == -1.0) {
                           setState(() {
                             isExpand = true;
-                            print('true');
                           });
                         } else {
                           setState(() {
                             isExpand = false;
-                            print('false');
+                            isShowReview = false;
                           });
                         }
                       }
@@ -182,6 +182,55 @@ class _DetailProductState extends State<DetailProduct> {
                                 height: 2,
                               ),
                             ),
+                            const SizedBox(height: 50),
+                            isShowReview
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Review',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 24,
+                                          fontWeight: semibold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      // REVIEW ITEM
+                                      const ReviewItem(
+                                        imgUrl: 'img_review-1.png',
+                                        name: 'Lydia Clayton',
+                                        review:
+                                            'Barang bagus, pengiriman cepat',
+                                        items: [
+                                          'assets/images/img_product-review-1.png',
+                                          'assets/images/img_product-review-2.png',
+                                          'assets/images/img_product-review-3.png',
+                                        ],
+                                      ),
+                                      const ReviewItem(
+                                        imgUrl: 'img_review-2.png',
+                                        name: 'Joan Gray',
+                                        review:
+                                            'Barang bagus, pengiriman cepat',
+                                        items: [
+                                          'assets/images/img_product-review-4.png',
+                                          'assets/images/img_product-review-5.png',
+                                        ],
+                                      ),
+                                      const ReviewItem(
+                                        imgUrl: 'img_review-3.png',
+                                        name: 'Audra Still',
+                                        review:
+                                            'Barang bagus, pengiriman cepat',
+                                        items: [
+                                          'assets/images/img_product-review-6.png',
+                                          'assets/images/img_product-review-7.png',
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                : const SizedBox()
                           ],
                         ),
                       ),
