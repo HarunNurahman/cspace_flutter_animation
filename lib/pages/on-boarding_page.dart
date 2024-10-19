@@ -1,7 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cspace_flutter_animation/configs/styles.dart';
 import 'package:cspace_flutter_animation/pages/widgets/on-boarding_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -12,7 +12,7 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoardingState extends State<OnBoarding> {
   int currentIndex = 0;
-  CarouselController carouselController = CarouselController();
+  FlutterCarouselController carouselController = FlutterCarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +20,7 @@ class _OnBoardingState extends State<OnBoarding> {
       body: Column(
         children: [
           Expanded(
-            child: CarouselSlider(
-              carouselController: carouselController,
+            child: FlutterCarousel(
               items: const [
                 // Slide 1
                 OnBoardingItem(
@@ -45,7 +44,9 @@ class _OnBoardingState extends State<OnBoarding> {
                       'Aliqua id fugiat nostrud irure ex duis ea\nquis id quis ad et. Sunt qui esse',
                 ),
               ],
-              options: CarouselOptions(
+              options: FlutterCarouselOptions(
+                showIndicator: false,
+                controller: carouselController,
                 height: double.infinity,
                 viewportFraction: 1,
                 enableInfiniteScroll: false,
@@ -115,7 +116,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 TextButton(
                   onPressed: () {
                     if (currentIndex == 2) {
-                      Navigator.pushNamed(context, '/login');
+                      Navigator.pushNamed(context, '/home');
                     }
                     carouselController.nextPage();
                   },

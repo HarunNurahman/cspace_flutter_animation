@@ -120,7 +120,7 @@ class _DetailProductState extends State<DetailProduct> {
                             const SizedBox(height: 16),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              child: Container(
+                              child: SizedBox(
                                 height: 50,
                                 child: Stack(
                                   alignment: Alignment.centerLeft,

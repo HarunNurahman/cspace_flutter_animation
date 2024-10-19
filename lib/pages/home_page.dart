@@ -1,8 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cspace_flutter_animation/configs/styles.dart';
 import 'package:cspace_flutter_animation/pages/widgets/home-category_item.dart';
 import 'package:cspace_flutter_animation/pages/widgets/home-popular_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -166,7 +166,7 @@ class _HomeState extends State<Home> {
         // CATEGORY CAROUSEL
         Container(
           margin: const EdgeInsets.only(top: 25),
-          child: CarouselSlider(
+          child: FlutterCarousel(
             items: const [
               HomeCategoryItem(
                 imgUrl: 'assets/images/img_product-category-1.png',
@@ -184,7 +184,7 @@ class _HomeState extends State<Home> {
                 subtitle: 'Chair',
               )
             ],
-            options: CarouselOptions(
+            options: FlutterCarouselOptions(
               height: 140,
               enableInfiniteScroll: false,
               viewportFraction: 1,

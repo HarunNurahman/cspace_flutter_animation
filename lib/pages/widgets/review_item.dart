@@ -64,7 +64,7 @@ class ReviewItem extends StatelessWidget {
                   child: Row(
                     children: items
                         .map((item) => Container(
-                              margin: EdgeInsets.only(right: 20),
+                              margin: const EdgeInsets.only(right: 20),
                               child: Image.asset(
                                 item,
                                 width: 72,

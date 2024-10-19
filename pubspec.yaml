@@ -28,11 +28,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   device_preview: ^1.1.0
   flutter:
     sdk: flutter
+  flutter_carousel_widget: ^3.1.0
   fluttertoast: ^8.2.2
   google_fonts: ^5.1.0
   shimmer: ^3.0.0

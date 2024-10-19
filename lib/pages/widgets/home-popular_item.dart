@@ -24,7 +24,7 @@ class _HomePopularItemState extends State<HomePopularItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, '/detail'),
-      child: Container(
+      child: SizedBox(
         height: 300,
         child: Card(
           margin: const EdgeInsets.only(right: 24),
